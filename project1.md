@@ -1,3 +1,21 @@
+# Project 1 Title: Static Website setup Using Nginx
+
+## Introduction
+
+In this project, we’ll build a simple, secure website using NGINX, Amazon Route 53, and Certbot. NGINX will handle showing our website to visitors, making sure it loads quickly. Amazon Route 53 will take care of our website’s address (like www.example.com) so that people can easily find it online. To keep the site secure, we’ll use Certbot to set up HTTPS, which means any data sent to or from the site is encrypted and safe. By the end, we’ll have a website that’s easy to access and secure for all visitors.
+
+#### How Certbot Works:
+
+1. **Install Certbot**: Install Certbot on your server.
+2. **Obtain a Certificate**: Use Certbot to request a certificate from Let's Encrypt. Certbot will verify that you control the domain for which you are requesting the certificate.
+3. **Install the Certificate**: Certbot can automatically configure your web server to use the new certificate.
+4. **Renewal**: Certbot will periodically check for expiring certificates and renew them automatically.
+
+Certbot is widely used because it provides a straightforward and automated way to improve web security with minimal effort.
+
+---
+
+## Project 1
 ## Checklist
 
 - [x] Task 1: Buy a domain name from a domain Registrar.
