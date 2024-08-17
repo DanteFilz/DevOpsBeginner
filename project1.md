@@ -28,7 +28,7 @@ In this project, we’ll build a simple, secure website using NGINX, Amazon Rout
 - Input a **Key pair name** and click on **Create key pair**
 - On the **Network settings**, select the boxes for each of the follow;  **SSH**, **HTTP**, and **HTTPS** access, then click **Launch instance**
 
-![6](image6.png)
+![6](img/image6.png)
 
 > [!NOTE]
 For security reasons, it's recommended to restrict SSH access to your IP address only. However, for the purpose of this documentation, access has been granted from anywhere.
@@ -38,7 +38,7 @@ For security reasons, it's recommended to restrict SSH access to your IP address
 - Click on the **Connect** button
 - Copy the command provided under **`SSH client`** header
 
-![10](image10.png)
+![10](img/image10.png)
 
 ---------
 
@@ -49,7 +49,7 @@ For security reasons, it's recommended to restrict SSH access to your IP address
 - input **cd ~/Downloads** and paste **SSH client** copied
 - Press `Enter` to execute the command.
 
-![11](image11.png)
+![11](img/image11.png)
 
 ### Create And Assign an Elastic IP
 
@@ -65,7 +65,7 @@ The IP address for your instance has been updated to the elastic IP associated w
 
 - Paste the **command** into your terminal and then press Enter. When prompted, type **"yes"** and press Enter to connect.
 
-![17](image17.png)
+![17](img/image17.png)
 
 ----------
 
@@ -83,7 +83,7 @@ The IP address for your instance has been updated to the elastic IP associated w
 - Go back to your EC2 dashboard and copy your **Public IPv4 address**
 - Visit your instances **Public IPv4 address** in a web browser to view the default Nginx startup page
 
-![20](image20.png)
+![20](img/image20.png)
 
 ---------
 - Download your website template from your preferred website by navigating to the website, locating the template you want, and obtaining the download URL for the website.
