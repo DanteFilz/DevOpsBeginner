@@ -99,19 +99,14 @@ The IP address for your instance has been updated to the elastic IP associated w
 > [!NOTE]
 Make sure you right-click on the zip folder, the one that says **.zip**. If it doesn't appear after clicking download, try clicking the download button again until it shows up, as shown in the picture.
 
-- Hover your mouse cursor over **Copy①** and then click on **Copy URL②** from the list that appears on the right
-- Paste the URL into a notebook to use alongside the **`curl`** command when downloading the website content to your machine
+- Select **Copy** and then click on **Copy URL** from the list that appears on the right
+- Paste the URL into a notebook/sticker note to use alongside the **`curl`** command when downloading the website content to your machine
+- On your terminal, Run the command **`sudo curl -o /var/www/html/2137_barista_cafe.zip https://www.tooplate.com/zip-templates/2137_barista_cafe.zip`** to download the websites file to your html directory
 
----
+----------------
 
-- Run this command **`sudo curl -o /var/www/html/2137_barista_cafe.zip https://www.tooplate.com/zip-templates/2137_barista_cafe.zip`** to download the websites file to your html directory.
-
-> [!NOTE]
-The **`curl`** command is a utility for making HTTP requests via the command line. Here, it's utilized to retrieve a file from a specified URL.
-The **`-o`** flag designates the output file or destination. In this instance, it signifies that the downloaded file, named **"2137_barista_cafe.zip"**, should be stored in the **"/var/www/html/"** directory.
-The URL **`https://www.tooplate.com/zip-templates/2137_barista_cafe.zip`** is the source for downloading the file. Make sure to replace it with the URL of your own website template. Curl will retrieve the content located at this URL.
-- To install the unzip tool, run the following command: **`sudo apt install unzip`**
-- Navigate to the web server directory by running the following command: **`cd /var/www/html`**
+- To install the unzip tool, run the following command in your ubuntu terminal: **`sudo apt install unzip`**
+- Run this command to locate the web server directory: **`cd /var/www/html`**
 - Unzip the contents of your website by running **`sudo unzip <website template name>`**
 
 ![20](img/20.png)
@@ -190,7 +185,7 @@ You may notice the sign that says **Not secure**. Next, you'll use certbot to ob
 - Verify the website's SSL using the OpenSSL utility with the command: **`openssl s_client -connect jaykaneki.cloud:443`**
 - Visit **`https://<domain name>`** to view your website
 
-![39](img/39.png)
+![31](img/image31.png)
 
 ---
 ---
