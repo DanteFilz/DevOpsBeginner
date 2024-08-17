@@ -2,20 +2,8 @@
 
 ## Introduction
 
-In this project, we’ll build a simple, secure website using NGINX, Amazon Route 53, and Certbot. NGINX will handle showing our website to visitors, making sure it loads quickly. Amazon Route 53 will take care of our website’s address (like www.example.com) so that people can easily find it online. To keep the site secure, we’ll use Certbot to set up HTTPS, which means any data sent to or from the site is encrypted and safe. By the end, we’ll have a website that’s easy to access and secure for all visitors.
+In this project, we’ll build a simple, secure website using NGINX, Amazon Route 53, and Certbot. NGINX will handle showing our website to visitors, making sure it loads quickly. Amazon Route 53 will take care of our website’s address (like www.example.com) so that people can easily find it online. To keep the site secure, we’ll use Certbot to set up HTTPS, which means any data sent to or from the site is encrypted and safe. By the end, we’ll have a website that’s easy to access and secure for all visitors
 
-#### How Certbot Works:
-
-1. **Install Certbot**: Install Certbot on your server.
-2. **Obtain a Certificate**: Use Certbot to request a certificate from Let's Encrypt. Certbot will verify that you control the domain for which you are requesting the certificate.
-3. **Install the Certificate**: Certbot can automatically configure your web server to use the new certificate.
-4. **Renewal**: Certbot will periodically check for expiring certificates and renew them automatically.
-
-Certbot is widely used because it provides a straightforward and automated way to improve web security with minimal effort.
-
----
-
-## Project 1
 ## Checklist
 
 - [x] Task 1: Buy a domain name from a domain Registrar.
@@ -40,7 +28,7 @@ Certbot is widely used because it provides a straightforward and automated way t
 - Input a **Key pair name** and click on **Create key pair**
 - On the **Network settings**, select the boxes for each of the follow;  **SSH**, **HTTP**, and **HTTPS** access, then click **Launch instance**
 
-![6]
+![6](image6.png)
 
 > [!NOTE]
 For security reasons, it's recommended to restrict SSH access to your IP address only. However, for the purpose of this documentation, access has been granted from anywhere.
@@ -50,7 +38,7 @@ For security reasons, it's recommended to restrict SSH access to your IP address
 - Click on the **Connect** button
 - Copy the command provided under **`SSH client`** header
 
-![10]
+![10](image10.png)
 
 ---------
 
@@ -61,7 +49,7 @@ For security reasons, it's recommended to restrict SSH access to your IP address
 - input **cd ~/Downloads** and paste **SSH client** copied
 - Press `Enter` to execute the command.
 
-![11]
+![11](image11.png)
 
 ### Create And Assign an Elastic IP
 
@@ -77,7 +65,7 @@ The IP address for your instance has been updated to the elastic IP associated w
 
 - Paste the **command** into your terminal and then press Enter. When prompted, type **"yes"** and press Enter to connect.
 
-![17]
+![17](image17.png)
 
 ----------
 
@@ -94,11 +82,11 @@ The IP address for your instance has been updated to the elastic IP associated w
 - Start your Nginx server by running the **`sudo systemctl start nginx`** command, enable it to start on boot by executing **`sudo systemctl enable nginx`**, and then confirm if it's running with the **`sudo systemctl status nginx`** command
 - Go back to your EC2 dashboard and copy your **Public IPv4 address**
 - Visit your instances **Public IPv4 address** in a web browser to view the default Nginx startup page
+
+![20](image20.png)
+
+---------
 - Download your website template from your preferred website by navigating to the website, locating the template you want, and obtaining the download URL for the website.
-
-![tpd](img/tooplate-download.gif)
-
----
 
 **How to obtain the website template URL from tooplate.com:**
 
@@ -117,8 +105,6 @@ Make sure you right-click on the zip folder, the one that says **.zip**. If it d
 ---
 
 - Run this command **`sudo curl -o /var/www/html/2137_barista_cafe.zip https://www.tooplate.com/zip-templates/2137_barista_cafe.zip`** to download the websites file to your html directory.
-
-![19](img/19.png)
 
 > [!NOTE]
 The **`curl`** command is a utility for making HTTP requests via the command line. Here, it's utilized to retrieve a file from a specified URL.
