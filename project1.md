@@ -15,46 +15,22 @@
 
 ### Setting up an Ubuntu Server
 - Login into your AWS Account as a **Root User** 
-- Search and click on **EC2** within the AWS management console.
-
-![1]
-
+- Search and click on **EC2** within the AWS management console
 - Click on **Launch instance** button
-
-![2]
-
-- Give a title to the instance using the **Name** field and then select the **Ubuntu** AMI from the **Quick Start** options.
-
-![3]
-
+- Give a title to the instance using the **Name** field and then select the **Ubuntu** AMI from the **Quick Start** options
 - Scroll down to **Key pair (login)** and click on **Create new key pair** button to generate a key pair for secure connection to your instance.
-
-![4]
-
-- Input a **Key pair name** and click on **Create key pair**.
-
-![5]
-
-- on the **Network settings**, select the boxes for each of the follow;  **SSH**, **HTTP**, and **HTTPS** access, then click **Launch instance**.
+- Input a **Key pair name** and click on **Create key pair**
+- On the **Network settings**, select the boxes for each of the follow;  **SSH**, **HTTP**, and **HTTPS** access, then click **Launch instance**
 
 ![6]
 
 > [!NOTE]
 For security reasons, it's recommended to restrict SSH access to your IP address only. However, for the purpose of this documentation, access has been granted from anywhere.
 
-- Click on **View all instances**.
-
-![7]
-
-- Click on the **created instance**.
-
-![8]
-
-- Click on the **Connect** button.
-
-![9]
-
-- Copy the command provided under **`SSH client`** header.
+- Click on **View all instances**
+- Click on the **created instance**
+- Click on the **Connect** button
+- Copy the command provided under **`SSH client`** header
 
 ![10]
 
@@ -71,26 +47,11 @@ For security reasons, it's recommended to restrict SSH access to your IP address
 
 ### Create And Assign an Elastic IP
 
-- Log into your AWS console account and click on the **menu icon** to open the dashboard menu.
-
-![12]
-
-- Click **Elastic IPs** under **Network & Security**.
-
-![13]
-
-- Click on the **Allocate Elastic IP address** button.
-
-![14]
-
-- Proceed to click on **Allocate**.
-
-![15]
-
-- **Associate this Elastic IP address** with your running instance.
-
-![16]
-
+- Log into your AWS console account and click on the **menu icon** to open the dashboard menu
+- Click **Elastic IPs** under **Network & Security**
+- Click on the **Allocate Elastic IP address** button
+- Proceed to click on **Allocate**
+- **Associate this Elastic IP address** with your running instance
 - Select the instance you wish to associate with the elastic IP address, then click on **Associate**.
 
 > [!NOTE]
@@ -112,18 +73,9 @@ The IP address for your instance has been updated to the elastic IP associated w
 
 `sudo apt install nginx`
 
-- Start your Nginx server by running the **`sudo systemctl start nginx`** command, enable it to start on boot by executing **`sudo systemctl enable nginx`**, and then confirm if it's running with the **`sudo systemctl status nginx`** command.
-
-![17](img/17.png)
-
-- Go back to your EC2 dashboard and copy your **Public IPv4 address**.
-
-![ip](img/ip-address.png)
-
-- Visit your instances **Public IPv4 address** in a web browser to view the default Nginx startup page.
-
-![18](img/18.png)
-
+- Start your Nginx server by running the **`sudo systemctl start nginx`** command, enable it to start on boot by executing **`sudo systemctl enable nginx`**, and then confirm if it's running with the **`sudo systemctl status nginx`** command
+- Go back to your EC2 dashboard and copy your **Public IPv4 address**
+- Visit your instances **Public IPv4 address** in a web browser to view the default Nginx startup page
 - Download your website template from your preferred website by navigating to the website, locating the template you want, and obtaining the download URL for the website.
 
 ![tpd](img/tooplate-download.gif)
@@ -132,36 +84,17 @@ The IP address for your instance has been updated to the elastic IP associated w
 
 **How to obtain the website template URL from tooplate.com:**
 
-- Visit [**Tooplate**](https://www.tooplate.com/) and select the website template you prefer.
-
-![tp1](img/tp1.png)
-
-- Scroll down to the download section, right-click to open the menu, and select **Inspect** from the options.
-
-![tp2](img/tp2.png)
-
-- Select the **Network** tab.
-
-![tp3](img/tp3.png)
-
-- Click the **Download** button.
-
-![tp4](img/tp4.png)
-
-- You’ll see the **website zip folder** appear. Hover your mouse or trackpad pointer over it and right-click again.
-
-![tp5](img/tp5.png)
+- Visit [**Tooplate**](https://www.tooplate.com/) and select the website template you prefer
+- Scroll down to the download section, right-click to open the menu, and select **Inspect** from the options
+- Select the **Network** tab
+- Click the **Download** button
+- You’ll see the **website zip folder** appear. Hover your mouse or trackpad pointer over it and right-click again
 
 > [!NOTE]
 Make sure you right-click on the zip folder, the one that says **.zip**. If it doesn't appear after clicking download, try clicking the download button again until it shows up, as shown in the picture.
 
-- Hover your mouse cursor over **Copy①** and then click on **Copy URL②** from the list that appears on the right.
-
-![tp6](img/tp6.png)
-
-- Paste the URL into a notebook to use alongside the **`curl`** command when downloading the website content to your machine.
-
-![tp7](img/tp7.png)
+- Hover your mouse cursor over **Copy①** and then click on **Copy URL②** from the list that appears on the right
+- Paste the URL into a notebook to use alongside the **`curl`** command when downloading the website content to your machine
 
 ---
 
@@ -173,14 +106,9 @@ Make sure you right-click on the zip folder, the one that says **.zip**. If it d
 The **`curl`** command is a utility for making HTTP requests via the command line. Here, it's utilized to retrieve a file from a specified URL.
 The **`-o`** flag designates the output file or destination. In this instance, it signifies that the downloaded file, named **"2137_barista_cafe.zip"**, should be stored in the **"/var/www/html/"** directory.
 The URL **`https://www.tooplate.com/zip-templates/2137_barista_cafe.zip`** is the source for downloading the file. Make sure to replace it with the URL of your own website template. Curl will retrieve the content located at this URL.
-
-- To install the unzip tool, run the following command: **`sudo apt install unzip`**.
-
-- Navigate to the web server directory by running the following command: **`cd /var/www/html`**.
-
-![cd](img/cd.png)
-
-- Unzip the contents of your website by running **`sudo unzip <website template name>`**.
+- To install the unzip tool, run the following command: **`sudo apt install unzip`**
+- Navigate to the web server directory by running the following command: **`cd /var/www/html`**
+- Unzip the contents of your website by running **`sudo unzip <website template name>`**
 
 ![20](img/20.png)
 
@@ -208,56 +136,22 @@ To make your website accessible via your domain name rather than the IP address,
 > [!NOTE]
 Your domain registrar's interface might look different, but they all follow a similar basic layout.
 
-- On the website click on **Domain List**.
-
-![22](img/22.png)
-
-- Click on the **Manage** button.
-
-![23](img/23.png)
-
-- Go back to your AWS console, search for **Route 53①**, and then choose **Route 53②** from the list of services shown.
-
-![24](img/24.png)
-
-- Click on **Get started**.
-
-![25](img/25.png)
-
-- Select **Create hosted zones①** and click on **Get started②**.
-
-![26](img/26.png)
-
-- Enter your **Domain name①**, choose **Public hosted zone②** and then click on **Create hosted zone③**.
-
-![27](img/27.png)
-
-- Select the **created hosted zone①** and copy the assigned **Values②**.
-
-![28](img/28.png)
-
-- Go back to your domain registrar and select **Custom DNS** within the **NAMESERVERS** section.
-
-![29](img/29.png)
-
-- Paste the values you copied from Route 53 into the appropriate fields, then click the **checkmark symbol** to save the changes.
-
-![30](img/30.png)
-
-- Head back to your AWS console and click on **Create record**.
-
-![31](img/31.png)
-
-- Paste your Elastic IP address and then click on **Create records**.
-
-![32](img/32.png)
-
+- On the website click on **Domain List**
+- Click on the **Manage** button
+- Go back to your AWS console, search for **Route 53①**, and then choose **Route 53②** from the list of services shown
+- Click on **Get started**
+- Select **Create hosted zones①** and click on **Get started②**
+- Enter your **Domain name①**, choose **Public hosted zone②** and then click on **Create hosted zone③**
+- Select the **created hosted zone①** and copy the assigned **Values②**
+- Go back to your domain registrar and select **Custom DNS** within the **NAMESERVERS** section
+- Paste the values you copied from Route 53 into the appropriate fields, then click the **checkmark symbol** to save the changes
+- Head back to your AWS console and click on **Create record**
+- Paste your Elastic IP address and then click on **Create records**
 - Your A record has been successfully created.
 
 ![33](img/33.png)
 
-- Click on **create record** again, to create the record for your sub domain.
-
+- Click on **create record** again, to create the record for your sub domain
 - Input the Record name(**www➀**), paste your **IP address➁**, and then click on **Create records➂**.
 
 ![sub a record](img/sub-a-record.png)
@@ -285,18 +179,12 @@ You may notice the sign that says **Not secure**. Next, you'll use certbot to ob
 - Install certbot by executing the following commands:
 **`sudo apt update`**
 **`sudo apt install certbot python3-certbot-nginx`**
-
-![36](img/36.png)
-
-- Execute the **`sudo certbot --nginx`** command to request your certificate. Follow the instructions provided by certbot and select the domain name for which you would like to activate HTTPS.
+- Execute the **`sudo certbot --nginx`** command to request your certificate. Follow the instructions provided by certbot and select the domain name for which you would like to activate HTTPS
 
 ![37](img/37.png)
 
 - Verify the website's SSL using the OpenSSL utility with the command: **`openssl s_client -connect jaykaneki.cloud:443`**
-
-![38](img/38.png)
-
-- Visit **`https://<domain name>`** to view your website.
+- Visit **`https://<domain name>`** to view your website
 
 ![39](img/39.png)
 
