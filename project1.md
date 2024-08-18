@@ -109,67 +109,47 @@ Make sure you right-click on the zip folder, the one that says **.zip**. If it d
 - Run this command to locate the web server directory: **`cd /var/www/html`**
 - Unzip the contents of your website by running **`sudo unzip <website template name>`**
 
-![20](img/20.png)
-
 > [!NOTE]
 Replace **`<website template name>`** with the actual name of your website zip file. For example, mine is **2137_barista_cafe.zip** so i ran **`sudo unzip 2137_barista_cafe.zip`**.
 
-- Update your nginx configuration by running the command **`sudo nano /etc/nginx/sites-available/default`**. Then, edit the **`root`** directive within your server block to point to the directory where your downloaded website content is stored.
-
-![default root directive](img/drd.png)
-
-![nrd](img/nrd.png)
-
+- Update your nginx configuration by running the command **`sudo nano /etc/nginx/sites-available/default`**. Then, edit the **`root`** directive within your server block to point to the directory where your downloaded website content is stored
 - Restart Nginx to apply the changes by running: **`sudo systemctl restart nginx`**.
-
 - Open a web browser and go to your **Public IPv4 address/Elastic IP address** to confirm that your website is working as expected.
 
-![21](img/21.png)
+![29](img/image29a.png)
 
 ---
 
 ### Create An A Record
 
-To make your website accessible via your domain name rather than the IP address, you'll need to set up a DNS record. I did this by buying my domain from Namecheap and then moving hosting to AWS Route 53, where I set up an A record.
+You must configure a DNS record if you want people to reach your website using your domain name instead of its IP address. A domain was purchased on Namecheap, transferred my hosting to AWS Route 53, and created an A record there
 
-> [!NOTE]
-Your domain registrar's interface might look different, but they all follow a similar basic layout.
-
-- On the website click on **Domain List**
+- On the website select **Domain List**
 - Click on the **Manage** button
-- Go back to your AWS console, search for **Route 53①**, and then choose **Route 53②** from the list of services shown
+- Log into your AWS console, search  and select **Route 53** from the list of services displayed
 - Click on **Get started**
-- Select **Create hosted zones①** and click on **Get started②**
-- Enter your **Domain name①**, choose **Public hosted zone②** and then click on **Create hosted zone③**
-- Select the **created hosted zone①** and copy the assigned **Values②**
-- Go back to your domain registrar and select **Custom DNS** within the **NAMESERVERS** section
-- Paste the values you copied from Route 53 into the appropriate fields, then click the **checkmark symbol** to save the changes
+- Select **Create hosted zones** and click on **Get started**
+- Input your **Domain name**, choose **Public hosted zone** and then click on **Create hosted zone**
+- Select the **created hosted zone①** and copy the assigned **Values**
+- Return to your domain registrar and select **Custom DNS** within the **NAMESERVERS** section
+- Paste the values copied from Route 53 into the appropriate fields, then select the **checkmark symbol** to save the changes done
 - Head back to your AWS console and click on **Create record**
 - Paste your Elastic IP address and then click on **Create records**
-- Your A record has been successfully created.
-
-![33](img/33.png)
-
+- Your A record has been successfully created
 - Click on **create record** again, to create the record for your sub domain
-- Input the Record name(**www➀**), paste your **IP address➁**, and then click on **Create records➂**.
-
-![sub a record](img/sub-a-record.png)
+- Input the Record name(**www**), paste your **IP address**, and then click on **Create records**.
 
 > [!NOTE]
-Make sure to create DNS records for both your root domain and subdomain. This involves setting up an A record for the root domain (e.g., **`example.com`**) and another A record for the subdomain (e.g., **`www.example.com`**). These records will direct traffic to your server's IP address, ensuring that both your main site and any subdomains are accessible.
+Make sure to create DNS records for both your root domain and subdomain. This involves setting up an A record for the root domain (e.g., **`example.com`**) and another A record for the subdomain (e.g., **`www.example.com`**). These records will direct traffic to your server's IP address, ensuring that both your main site and any subdomains are accessible
 
-- Open your terminal and run **`sudo nano /etc/nginx/sites-available/default`** to edit your settings. Enter your domain and subdomain names, then save the changes.
+- Open your terminal and run **`sudo nano /etc/nginx/sites-available/default`** to edit your settings. Enter your domain and subdomain names, then save the changes
+- Restart your nginx server by running the **`sudo systemctl restart nginx`** command
+- Go to your domain name in a web browser to verify that your website is accessible
 
-![34](img/34.png)
-
-- Restart your nginx server by running the **`sudo systemctl restart nginx`** command.
-
-- Go to your domain name in a web browser to verify that your website is accessible.
-
-![35](img/35.png)
+![29](img/image29.png)
 
 > [!NOTE]
-You may notice the sign that says **Not secure**. Next, you'll use certbot to obtain the SSL certificate necessary to enable HTTPS on your site.
+The **Not secure** sign may be shown to you. After that, you'll utilize certbot to get the SSL certificate required to make your website HTTPS-capable
 
 ---
 
@@ -179,11 +159,8 @@ You may notice the sign that says **Not secure**. Next, you'll use certbot to ob
 **`sudo apt update`**
 **`sudo apt install certbot python3-certbot-nginx`**
 - Execute the **`sudo certbot --nginx`** command to request your certificate. Follow the instructions provided by certbot and select the domain name for which you would like to activate HTTPS
-
-![37](img/37.png)
-
-- Verify the website's SSL using the OpenSSL utility with the command: **`openssl s_client -connect jaykaneki.cloud:443`**
-- Visit **`https://<domain name>`** to view your website
+- Confirm the website's SSL using the OpenSSL utility with the command: **`openssl s_client -connect jaykaneki.cloud:443`**
+- Go to your **`https://<domain name>`** in this case **https://nextg.store** to view your website
 
 ![31](img/image31.png)
 
