@@ -74,8 +74,8 @@ server {
 * Run the **`sudo nginx -t`** command to check the syntax of the Nginx configuration file.
 * Delete the default files in the sites-available and sites-enabled directories by executing the following commands:
 
-+ **`sudo rm /etc/nginx/sites-available/default`**
-+ **`sudo rm /etc/nginx/sites-enabled/default`**
+ **`sudo rm /etc/nginx/sites-available/default`**
+ **`sudo rm /etc/nginx/sites-enabled/default`**
 
 * Restart the Nginx server by executing the following command: **`sudo systemctl restart nginx`**
 
@@ -122,3 +122,8 @@ You must configure a DNS record if you want people to reach your website using y
 ![5](img/image5.png)
 
 ![6](img/image6.png)
+
+---
+---
+
+#### The End Of Project 2
