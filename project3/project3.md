@@ -1,4 +1,4 @@
-# Project 3: Setup Load Balancing for Static Website Using Nignx
+# Project 3: Setting up Load Balancing for Static Website Using Nignx
 
 ## Introduction
 
@@ -67,7 +67,7 @@ server {
     location / {
         try_files $uri $uri/ =404;
     }
-}
+    }
 
 * Edit the root directive within your server block to point to the directory where your downloaded website content is stored.
 * Follow the same steps for the secind website by creating a new file in the Nginx sites-available directory.
@@ -98,8 +98,8 @@ server {
     upstream nextg {
     server 1;
     server 2;
-    # Add more servers as needed
-}
+    * Add more servers as needed
+    }
 
 server {
     listen 80;
@@ -108,7 +108,7 @@ server {
     location / {
         proxy_pass http://nextg;
     }
-}
+    }
 
 ![6](img/image6.png)
 
