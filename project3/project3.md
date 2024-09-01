@@ -89,11 +89,38 @@ server {
 
 ![5](img/image5.png)
 
+## Configure your Load balancer
+* Install Nginx on the server chosen to serve as a load balancer, and execute **`sudo systemctl status nginx`** to ensure it's running.
+* Execute **`sudo nano /etc/nginx/nginx.conf`** to edit your Nginx configuration file.
++ Add the following within the http block.
+
+    
+    upstream nextg {
+    server 1;
+    server 2;
+    # Add more servers as needed
+}
+
+server {
+    listen 80;
+    server_name <your domain> www.<your domain>;
+
+    location / {
+        proxy_pass http://nextg;
+    }
+}
+
+![6](img/image6.png)
+
+
+* Run **`sudo nginx -t`** to check for syntax error.
+* Restarting Nginx **`sudo systemctl restart nginx`**
 
 ### Create An A Record
 
 You must configure a DNS record if you want people to reach your website using your domain name instead of its IP address. A domain was purchased on Namecheap, transferred my hosting to AWS Route 53, and created an A record there
 
+## Point your domain's A records to the IP address of your Nginx load balancer server.
 - On the website select **Domain List**
 - Click on the **Manage** button
 - Log into your AWS console, search  and select **Route 53** from the list of services displayed
@@ -108,9 +135,9 @@ You must configure a DNS record if you want people to reach your website using y
 - Your A record has been successfully created
 - Click on **create record** again, to create the record for your sub domain
 - Input the Record name(**www**), paste your **IP address**, and then click on **Create records**.
-- Repeat the same process while creating your second subdomain record, and confirm that they both exist in the records list.
-- Open your terminal and run **`sudo nano /etc/nginx/sites-available/artist`** to edit your settings. Enter the name of your domain and then save your settings.
-- Run **`sudo nano /etc/nginx/sites-available/big_city`** to edit your settings. Enter the name of your domain and then save your settings.
+
+- Open your terminal for the first server and run **`sudo nano /etc/nginx/sites-available/artist`** to edit your settings. Enter the name of your domain and then save your settings.
+- Run **`sudo nano /etc/nginx/sites-available/big_city`** on the second web server terminal and to edit your settings. Enter the name of your domain and then save your settings.
 - Restart your nginx server by running the **`sudo systemctl restart nginx`** command.
 - To make sure your website is reachable, open a web browser and navigate to your domain name.
 
@@ -121,9 +148,13 @@ You must configure a DNS record if you want people to reach your website using y
 **`sudo apt install certbot python3-certbot-nginx`**
 - Execute the **`sudo certbot --nginx`** command to request your certificate. Follow the instructions provided by certbot and select the domain name for which you would like to activate HTTPS
 
-![6](img/image6.png)
+![7](img/image7.png)
+
+* Access your website to verify that Certbot has successfully enabled HTTPS.
+
+![8](img/image8.png)
 
 ---
 ---
 
-#### The End Of Project 2 No issues
+#### The End Of Project 3
