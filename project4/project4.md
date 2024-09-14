@@ -154,9 +154,12 @@ Our new website is now active, but the web root /var/www/projectlamp is still em
 - To create a new file named index.php inside your custom web root folder (/var/www/projectlamp), you can use the following command to open it in the nano text editor: **`nano /var/www/projectlamp/index.php`**.
 - This will create a new file. Copy and paste the following PHP code into the new file:
 
-```<?php
+```
+<?php
 
-phpinfo();```. 
+phpinfo();
+
+``` 
 
 - Return to the web browser and reload the page after saving and closed the file. The image below show display
 
