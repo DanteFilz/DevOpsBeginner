@@ -162,7 +162,7 @@ Our new website is now active, but the web root /var/www/projectlamp is still em
 - Press **`ctrl + x①`** on your keyboard to save and exit.
 - Reload Apache for the changes to take effect: **`sudo systemctl reload apache2`**.
 
-# Now, when two files are present in the same directory, Apache will give index.php priority over index.html.
+### Now, when two files are present in the same directory, Apache will give index.php priority over index.html.
 - To create a new file named index.php inside your custom web root folder (/var/www/projectlamp), you can use the following command to open it in the nano text editor: **`nano /var/www/projectlamp/index.php`**.
 - This will create a new file. Copy and paste the following PHP code into the new file:
 
