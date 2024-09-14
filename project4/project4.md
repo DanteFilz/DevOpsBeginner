@@ -324,7 +324,7 @@ Replace **`http://<domain name>`** with your actual domain name. Save the change
 
 * Access your website to verify that Certbot has successfully enabled HTTPS.
 
-![20a](img/image20a.png)
+![20](img/image20.png)
 
 ---
 ---
