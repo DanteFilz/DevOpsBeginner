@@ -38,11 +38,11 @@ Building a robust and scalable online presence with a WordPress website using th
 - Open your terminal and connect to your Ubuntu server via SSH.
 
 ## Install Apache
-# Execute the following commands.
+### Execute the following commands.
 - **`sudo apt update`**  
 - **`sudo apt install apache2`**
 
-### Use the command line **`sudo systemctl enable apache2`** to enable apache start on boot. Then, use the **`sudo systemctl status apache2`** command to verify its status.
+* Use the command line **`sudo systemctl enable apache2`** to enable apache start on boot. Then, use the **`sudo systemctl status apache2`** command to verify its status.
 
 * To check if the server is running and accessibble both via internet and locally, run the command.
 - **`curl http://localhost:80`**
@@ -57,7 +57,7 @@ Building a robust and scalable online presence with a WordPress website using th
 ![4](img/image4.png)
 
 ## Install MYSQL
-# Execute the following commands.
+### Execute the following commands.
 - **`sudo apt install mysql-server`**  
 - After the installation is complete, log in to the MySQL console by typing: .**`sudo mysql`**
 
@@ -72,7 +72,7 @@ Building a robust and scalable online presence with a WordPress website using th
 - **`sudo systemctl enable mysql①`**, and then confirm its status with the **`sudo systemctl status mysql②`**  command.
 
 ## Install PHP
-# Execute the following commands.
+### Execute the following commands.
 - **`sudo apt install php-curl php-gd php-mbstring php-xml php-xmlrpc php-soap php-intl php-zip`**
 - **`sudo apt install php libapache2-mod-php php-mysql`**
 - Confirm the downloaded PHP version by running **`php -v`** 
@@ -80,12 +80,15 @@ Building a robust and scalable online presence with a WordPress website using th
 ![6](img/image6.png)
 
 ## Creating A Virtual Host For Your Website Using Apache
-# Execute the following commands to create the directory for Projectlamp using the "mkdir" commands.
+### Execute the following commands to create the directory for Projectlamp using the "mkdir" commands.
+
 - **`sudo mkdir /var/www/projectlamp`**
 - Assign ownership of the directory to our current system user using: **`sudo chown -R $USER:$USER /var/www/projectlamp`**
 - Create and open a new configuration file in Apache's sites-available directory using the preferred command-line editor: 
 - **`sudo vi /etc/apache2/sites-available/projectlamp.conf`**.
 - Creating this will produce a new blank file. Paste the configuration text provided below into it:
+
+```
 
 <VirtualHost *:80>
 
@@ -103,6 +106,8 @@ CustomLog ${APACHE_LOG_DIR}/access.log combined
 
 </VirtualHost>
 
+```
+
 ![7](img/image7.png)
 
 - Save the changes by pressing the Esc key, then type **`:wq`** and press **`Enter`**.
@@ -119,9 +124,12 @@ CustomLog ${APACHE_LOG_DIR}/access.log combined
 
 Then run: **`sudo systemctl reload apache2`**. This will reload Apache for the changes to take effect.
 
+```
+
 [!NOTE]
 Our new website is now active, but the web root /var/www/projectlamp is still empty. Let's create an index.html file in that location to test that the virtual host works as expected.
 
+```
 - Create the index.html file with the content "Hello LAMP from <yourname>" in the /var/www/projectlamp directory, use the following command: **`sudo echo 'Hello LAMP from Filz' > /var/www/projectlamp/index.html`**.
 - Now, let's open our web browser and try to access our website using the IP address: **`http://<EC2-Public-IP-Address>:80`** replacing the EC2-Public IP with the actual EC2 instance created
 
@@ -135,6 +143,8 @@ Our new website is now active, but the web root /var/www/projectlamp is still em
 - Edit the dir.conf file using a text editor (such as nano or vi): **`sudo nano /etc/apache2/mods-enabled/dir.conf`**
 - Look for the DirectoryIndex directive within this file. It typically looks like this:
 
+```
+
 <IfModule mod_dir.c>
     DirectoryIndex index.html index.cgi index.pl index.php index.xhtml index.htm
 </IfModule>
@@ -144,6 +154,8 @@ Our new website is now active, but the web root /var/www/projectlamp is still em
 <IfModule mod_dir.c>
     DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm
 </IfModule>
+
+```
 
 ![11a](img/image11a.png)
 
@@ -168,7 +180,7 @@ phpinfo();
 You can use the rm command to do so: **`sudo rm /var/www/projectlamp/index.php`**.
 
 ## Install Wordpress
-# We may configure our LAMP environment first, and then start the WordPress installation procedure. First, download the WordPress installation files and place them in the default web server root directory, /var/www/html.
+* We may configure our LAMP environment first, and then start the WordPress installation procedure. First, download the WordPress installation files and place them in the default web server root directory, /var/www/html.
 
 - Navigate to the directory using the cd command: **`cd /var/www/html`** 
 - Then download the WordPress installation files using the following command: **`sudo wget -c http://wordpress.org/latest.tar.gz`**
@@ -177,8 +189,12 @@ You can use the rm command to do so: **`sudo rm /var/www/projectlamp/index.php`*
 
 ![13](img/image13.png)
 
+```
+
 [!NOTE]
 The files must be owned by the user of your web server. Identify the web server's user and assign the appropriate permissions accordingly. The user **`www-data`** is widely adopted as the default user for web server processes, especially on Ubuntu and Debian systems. This user oversees the operation of web server software (like Apache or Nginx) and manages incoming web requests. However, for verification and for tasks involving services that may not have a predefined user, checking the user of the web server is advisable.
+
+```
 
 - Check the user running the web server with the command: **`ps aux | grep apache | grep -v grep`**.
 
@@ -190,6 +206,8 @@ The files must be owned by the user of your web server. Identify the web server'
 - Access your MySQL root account with the following command: **`sudo mysql -u root -p①`**. Enter the password② you set earlier when prompted.
 - To create a separate database named wp_db for WordPress to manage, execute the following command in the MySQL prompt: **`CREATE DATABASE wp_db;`**
 
+```
+
 [!NOTE]
 This command allows you to create a new database (wp_db) within your MySQL environment. Feel free to name it as you prefer.
 
@@ -198,24 +216,32 @@ This command allows you to create a new database (wp_db) within your MySQL envir
 
 ```
 
+```
+
 GRANT ALL PRIVILEGES ON wp_db.* TO filz@localhost;
 FLUSH PRIVILEGES;
 
 ```
-
+```
 [!NOTE]
 This grants all privileges (ALL PRIVILEGES) on all tables within the wp_db database (wp_db.*) to the user jay when accessing from localhost. The FLUSH PRIVILEGES command ensures that MySQL implements the changes immediately. Adjust the database name (wp_db) and username (jay) as per your setup.
+
+```
 
 - Type exit to **`exit`** the MySQL shell.
 - Grant executable permissions recursively (-R) to the wordpress folder using the following command: **`sudo chmod -R 777 wordpress/`**
 
+```
+
 [!NOTE]
 This command sets read (r), write (w), and execute (x) permissions for the owner, group, and others on all files and directories within the wordpress folder. Using 777 permissions is quite permissive and may not be necessary for all files and folders; consider adjusting permissions based on security requirements.
+
+```
 
 - Change into the WordPress directory by running the command: **`cd wordpress`**
 
 ## Configure Wordpress
-# Setting up and configuring WordPress itself is an essential next step after creating a database for WordPress. You must first generate a configuration file specifically for WordPress.
+### Setting up and configuring WordPress itself is an essential next step after creating a database for WordPress. You must first generate a configuration file specifically for WordPress.
 
 - Rename the sample WordPress configuration file with the command: **`mv wp-config-sample.php wp-config.php`**.
 - Edit the wp-config.php file using the command: **`sudo nano wp-config.php`**.
@@ -225,8 +251,13 @@ This command sets read (r), write (w), and execute (x) permissions for the owner
 - Reload Apache for the changes to take effect: **`sudo systemctl reload apache2`**.
 - Once you've completed these steps, you can access your WordPress page to complete the installation. Open your web browser and go to **`http://<EC2 IP>/wordpress/`**. This will lead you to the WordPress setup wizard where you can finalize the installation process.
 
+```
+
 [!NOTE]
 Replace with the IP address of your EC2 instance when accessing your WordPress page.
+
+```
+
 - Select your preferred language and then click on Continue to proceed.
 
 ![15](img/image15.png)
@@ -262,8 +293,12 @@ You must configure a DNS record if you want people to reach your website using y
 - Input the Record name(**www**), paste your **IP address**, and then click on **Create records**.
 - To update your Apache configuration file in the sites-available directory to point to your domain name, use the command: **`sudo nano /etc/apache2/sites-available/projectlamp.conf.`**
 
+```
+
 [!NOTE]
 This command opens the projectlamp.conf file in the nano text editor with superuser privileges (sudo). Within the editor, adjust the necessary details to reflect your domain name configuration.
+
+```
 
 - Ensure that the server settings in your Apache configuration point to your domain name, and that the document root accurately points to your WordPress directory. Once you've made these adjustments, save the changes and exit the editor.
 
@@ -289,8 +324,12 @@ This command opens the projectlamp.conf file in the nano text editor with superu
 
 ![17](img/image17.png)
 
+```
+
 [!NOTE]
 The new configuration defines how Apache should handle requests for your domain, and its subdomain. With this configuration: Apache will handle requests for nextg.store and www.nextg.store. Files will be served from the **`/var/www/html/wordpress`** directory. Directory listings and symbolic links are allowed. The directory can be accessed by any client. Error logs will be written to **`/var/log/apache2/error.log`**. Access logs will be written to **`/var/log/apache2/access.log`** in the combined log format.
+
+```
 
 - To update your **`wp-config.php`** file with DNS settings, use the following command: **`sudo nano wp-config.php`** and add these lines to the file:
 
