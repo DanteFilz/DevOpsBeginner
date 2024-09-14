@@ -130,7 +130,7 @@ Our new website is now active, but the web root /var/www/projectlamp is still em
 - Remove the index.html file by running the following command: **`sudo rm /var/www/projectlamp/index.html`**
 
 ## Enable PHP On The Website
-# When using Apache's default DirectoryIndex settings, an index.html file will always take priority over an index.php file. You must update the dir.conf file in order to modify the order in which index files (for example, index.php over index.html) are ranked in Apache. Here's how to go about it:
+- When using Apache's default DirectoryIndex settings, an index.html file will always take priority over an index.php file. You must update the dir.conf file in order to modify the order in which index files (for example, index.php over index.html) are ranked in Apache. Here's how to go about it:
 
 - Edit the dir.conf file using a text editor (such as nano or vi): **`sudo nano /etc/apache2/mods-enabled/dir.conf`**
 - Look for the DirectoryIndex directive within this file. It typically looks like this:
@@ -154,9 +154,9 @@ Our new website is now active, but the web root /var/www/projectlamp is still em
 - To create a new file named index.php inside your custom web root folder (/var/www/projectlamp), you can use the following command to open it in the nano text editor: **`nano /var/www/projectlamp/index.php`**.
 - This will create a new file. Copy and paste the following PHP code into the new file:
 
-<?php
+```<?php
 
-phpinfo();
+phpinfo();```. 
 
 - Return to the web browser and reload the page after saving and closed the file. The image below show display
 
