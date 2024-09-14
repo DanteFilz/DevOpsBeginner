@@ -196,8 +196,12 @@ This command allows you to create a new database (wp_db) within your MySQL envir
 - To access the new database, you can create a MySQL user account with a strong password using the following command: **`CREATE USER filz@localhost IDENTIFIED BY 'wp-password';`**
 - To grant your created user (filz@localhost) all privileges needed to work with the wp_db database in MySQL, use the following commands:
 
+```
+
 GRANT ALL PRIVILEGES ON wp_db.* TO filz@localhost;
 FLUSH PRIVILEGES;
+
+```
 
 [!NOTE]
 This grants all privileges (ALL PRIVILEGES) on all tables within the wp_db database (wp_db.*) to the user jay when accessing from localhost. The FLUSH PRIVILEGES command ensures that MySQL implements the changes immediately. Adjust the database name (wp_db) and username (jay) as per your setup.
@@ -263,6 +267,7 @@ This command opens the projectlamp.conf file in the nano text editor with superu
 
 - Ensure that the server settings in your Apache configuration point to your domain name, and that the document root accurately points to your WordPress directory. Once you've made these adjustments, save the changes and exit the editor.
 
+```
 <VirtualHost *:80>
     ServerName <Your root domain name>
     ServerAlias <Your sub domain name>
@@ -280,6 +285,8 @@ This command opens the projectlamp.conf file in the nano text editor with superu
     CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
 
+```
+
 ![17](img/image17.png)
 
 [!NOTE]
@@ -287,10 +294,14 @@ The new configuration defines how Apache should handle requests for your domain,
 
 - To update your **`wp-config.php`** file with DNS settings, use the following command: **`sudo nano wp-config.php`** and add these lines to the file:
 
+```
+
 /** MY DNS SETTINGS */
 define('WP_HOME', 'http://<domain name>');
 
 define('WP_SITEURL', 'http://<domain name>');
+
+```
 
 Replace **`http://<domain name>`** with your actual domain name. Save the changes and exit the editor.
 
